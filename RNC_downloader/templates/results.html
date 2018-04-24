@@ -1,0 +1,72 @@
+
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.6.2/basic/ckeditor.js"></script>
+    <link rel= "icon" href="/static/vx.ico">
+
+<script type="text/javascript">  </script>
+<style type="text/css">
+	
+#result_table
+{
+	margin-top:5%;
+	margin-bottom:5%;
+	margin-right:4%;
+	margin-left:3%;
+	padding-right:4%;
+	padding-left:3%;
+}
+
+
+</style>
+</head>
+	
+<body>
+{% include "includes/_navbar.html" %}
+<h2>Results</h2>
+<hr>
+{% if resulting_data_gathered %}
+<table id="result_table" class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Owner's name</th>
+      <th scope="col">Business name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Management</th>
+      <th scope="col">Location</th>
+      <th scope="col">District</th>
+      <th scope="col">Amount of Employees</th>
+      <th scope="col">Phone_number</th>
+      <th scope="col">Registration date</th>
+      <th scope="col">Payment Method</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  	{% for item in resulting_data_gathered %}
+
+      <tr>
+      		{% for value in item %}
+     	 <th scope="row"> {{value}} </th>
+      		{% endfor %}
+	  </tr>
+	{% endfor %}
+
+  </tbody>
+</table>
+
+{% else %}
+
+<h1 id="error_displayer" >
+	{{error}}
+</h1>
+{% endif %}
+
+
+</body>
+
+</html>

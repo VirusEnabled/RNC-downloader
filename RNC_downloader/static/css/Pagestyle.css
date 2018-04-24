@@ -1,0 +1,39 @@
+
+h1{
+	text-align: center;
+}
+footer
+{
+	margin-top:90%;
+}
+#sidebar
+{
+	position: absolute;
+	margin-right: 80%;
+	margin-left: 5%;
+	margin-top: 5%;
+}
+
+article
+{	
+background-color: #A9A9A9;
+margin-top: 5%;
+margin-left: 20%;
+margin-right: 20%;
+height:80%;
+}
+
+#accounts_loader
+{
+	background-color: #FFF8DC;
+	margin-top: 1%;
+	margin-right:10%;
+	margin-left:10%;
+	margin-bottom: 5%;
+}
+
+footer
+{
+	margin-bottom: 3%;
+	margin-left: 2%
+}

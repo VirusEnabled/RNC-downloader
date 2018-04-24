@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RNC Downloader</title>
+	<meta charset="utf-8" />
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.6.2/basic/ckeditor.js">
+    </script>
+    <link rel= "icon" href="/static/vx.ico">
+<script type="text/javascript"> 
+
+/*
+document.getElementById("starter").onclick() = function()
+{
+
+location.href="/download"
+
+}
+
+*/
+</script>
+
+<style type="text/css">
+	
+
+#starter{
+	/*
+	margin-top:2% ;
+	margin-right: 0%;
+	margin-left: 5%;
+	width:400px;
+	height:200px;*/
+}
+</style>
+
+</head>
+    {% include 'includes/_navbar.html' %}
+    <body>
+<header>
+	  <div  id ="info_container" class="jumbotron text-center">
+
+	<h1> 
+		RNC downloader.
+	 </h1>
+	 <p class="lead">This application is built on the Python Flask framework and is focused on downloading the RNCs and importing them into a database.</p>
+	 <button type="button" id="starter" class="btn btn-primary btn-lg" onclick= "location.href = '/downloaded_info';">Start App</button>
+	 </div>
+</header>
+
+
+
+</body>
+<footer class="mastfoot mt-auto">
+        <div class="inner" align="center">
+          <p id="footer-text" align="center">Powered by <a href="#">Virus-Enabled</a>.</p>
+          <a href='https://github.com/Daniel0Rod'> My GitHub</a> | <a href="mailto:Graphs02@gmail.com" >My Email</a> 
+        </div>
+      </footer>
+</html>
