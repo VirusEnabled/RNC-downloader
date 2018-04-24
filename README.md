@@ -8,3 +8,6 @@ OffDependencies: Offline dependencies for decoding and unzipping the downloaded 
 
 Script.sql: This script generates the database, user and table for the WebApp.
   
+  
+  #Note:
+  You will need to run script.sql first in order to run App.py
