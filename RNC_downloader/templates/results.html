@@ -9,7 +9,7 @@
 <script type="text/javascript">  </script>
 <style type="text/css">
 	
-#result_table
+#table_container
 {
 	margin-top:5%;
 	margin-bottom:5%;
@@ -28,6 +28,7 @@
 <h2>Results</h2>
 <hr>
 {% if resulting_data_gathered %}
+<div id="table_container">
 <table id="result_table" class="table table-striped">
   <thead class="thead-dark">
     <tr>
@@ -58,7 +59,7 @@
 
   </tbody>
 </table>
-
+</div>
 {% else %}
 
 <h1 id="error_displayer" >
