@@ -1,16 +1,14 @@
-import os,zipfile
-from . import database_gen as dgen
+import os,database_gen as dgen
 from zipfile import ZipFile
 
 # this script formats the file entrance for an output one.
 
-#Usable
+#usable
 def unzipper(zipfile):
 	"""
 	unzips a file 
 	returns the content of the zipfile
 	"""
-
 	try:
 		list_files = []
 		single_file = ""
@@ -27,25 +25,21 @@ def unzipper(zipfile):
 		raise ex
 
 		
-#Usable
+#usable
 def file_formater(file):
 	"""
-	decodes data and insert the results in a csv file
-
+	decodes data and inserted the result in a csv file
 	"""
-	
 	try:
-
 		if isinstance(file,list):
 			for element in file:
 				file_formater(element)
-				
+
 		source_info = open("%s" % file,"br").readlines()
 		formated_file = open("%s/result.csv" % os.getcwd(),"a+")
 		for element in source_info:
 			decoded_element = element.decode(encoding = "latin-1")
-			if "|" in decoded_element and '/' in decoded_element:					
-				decoded_element = decoded_element.replace('/','-')
+			if "|" in decoded_element:
 				formated_file.write(decoded_element.replace("|",","))
 		else:
 			return formated_file.name
@@ -58,29 +52,24 @@ def file_formater(file):
 		raise ex
 
 
-
-#Not Usable for web enviroment
-def inserter(file,database,user,password):
+def inserter(file):
 	"""
 	inserts the data from the file into the table and deletes the file afterwards
-	the table is fixed so it doesn't need to be provided.
-
+	
 	"""
 	try:
-		db = dgen.DbManager(database,user,password)
-		#connection_result = db.connect()
-		table = db.generate_table()
-		if table:
-			print(file)
-			result = db.automated_data_loader(file)
-			if result:
-				#data = db.showing_results()
-				os.remove("%s" % file)
-				os.system("rm -r -f TMP")
-				connection_result[0].close()
-				return True
+		db = dgen.DbManager("rnc_db","root","Dontwasteourtime99%")
+		connection_result = db.connect()
+		if connection_result:
+			table = db.generate_table()
+			if table:
+				print(file)
+				db.automated_data_loader(file)
+				os.system("rm -f %s" % file)
+				return "Success"
 	except Exception as e:
-		return False
+		return "Failure", e
+
 
 
 # this code ain't working...
@@ -91,7 +80,7 @@ def file_formater_and_poster(file):
 	"""
 	
 	try:
-		db = dgen.DbManager("rnc_db","rnc_viewer","Password22")
+		db = dgen.DbManager("rnc_db","root","Dontwasteourtime99%")
 		connection_result = db.connect()
 		if connection_result:
 			table = db.generate_table()
@@ -104,7 +93,7 @@ def file_formater_and_poster(file):
 				for element in source_info:
 					decoded_element = element.decode(encoding = "latin-1")
 					while "|" in decoded_element:
-						decoded_element = decoded_element.replace("|",",").replace("\n",";")
+						decoded_element = decoded_element.replace("|",",")
 					inserting_values_into_table = db.query_inserter("rnc_info",decoded_element)
 					if inserting_values_into_table[0] is False:
 						raise AttributeError("there's an error with your input. which is %s" % inserting_values_into_table[1])
@@ -123,8 +112,6 @@ def file_formater_and_poster(file):
 
 
 if __name__ == '__main__':
-	#print(unzipper("%s/DGII_RNC.zip" % os.getcwd()))
-	#print(file_formater(unzipper("%s/DGII_RNC.zip" % os.getcwd())))  #Testing output in the CLI
-	print(inserter(file_formater(unzipper("%s/DGII_RNC.zip" % os.getcwd())),"rnc_db","rnc_viewer","Password22")) #Testing output in the CLI
+	print(inserter(file_formater(unzipper("%s/DGII_RNC.zip" % os.getcwd())))) #Testing output in the CLI
 
 	pass

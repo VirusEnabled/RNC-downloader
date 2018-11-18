@@ -1,3 +1,4 @@
+drop database if exists rnc_db;
 create database rnc_db;
 
 create user rnc_viewer identified by 'Password22';
@@ -5,9 +6,9 @@ grant all on rnc_db.* to rnc_viewer;
 
 
 use rnc_db;
-
+drop table if exists rnc_info;
 create table rnc_info(
-id int not null unsigned,
+id int not null,
 owner_name varchar(100) not null,
 business_name varchar(100) not null,
 descripton varchar(200) not null default 'NO DESCRIPCION',
